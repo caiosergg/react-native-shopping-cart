@@ -12,33 +12,29 @@ import produtos from "../products.json";
 export default function Home() {
   const router = useRouter();
 
-  function handleCart() {}
-
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.row}>
+      <View style={styles.header}>
         <Text style={styles.title}>Lista de Produtos</Text>
         <TouchableOpacity
-          style={styles.buttonCart}
+          style={styles.cartButton}
           onPress={() => router.push("/carrinho")}
         >
-          <Text>Carrinho</Text>
+          <Text style={styles.cartButtonText}>Carrinho</Text>
         </TouchableOpacity>
       </View>
 
-      <View>
-        {produtos.map((item) => (
-          <View key={item.id} style={styles.row}>
-            <View style={styles.info}>
-              <Text style={styles.item}>{item.name}</Text>
-              <Text style={styles.item}>R$ {item.price}</Text>
-            </View>
-            <TouchableOpacity style={styles.button}>
-              <Text style={{ fontSize: 20, color: "#fff" }}>+</Text>
-            </TouchableOpacity>
+      {produtos.map((item) => (
+        <View key={item.id} style={styles.productCard}>
+          <View>
+            <Text style={styles.productName}>{item.name}</Text>
+            <Text style={styles.productPrice}>R$ {item.price}</Text>
           </View>
-        ))}
-      </View>
+          <TouchableOpacity style={styles.addButton}>
+            <Text style={styles.addButtonText}>+</Text>
+          </TouchableOpacity>
+        </View>
+      ))}
     </SafeAreaView>
   );
 }
@@ -47,40 +43,63 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    padding: 16,
   },
-  title: {
-    fontSize: 25,
-    color: "#000",
-    padding: 8,
-    fontWeight: "bold",
-    alignSelf: "flex-start",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonCart: {
-    alignSelf: "center",
-    marginRight: 8,
-    backgroundColor: "blue",
-  },
-  row: {
+  header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 8,
+    marginBottom: 20,
   },
-  button: {
+  title: {
+    fontSize: 24,
+    marginLeft: 8,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  cartButton: {
+    backgroundColor: "#3498db",
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
+  },
+  cartButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  productCard: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 12,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    backgroundColor: "#fafafa",
+  },
+  productName: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "#333",
+  },
+  productPrice: {
+    fontSize: 16,
+    color: "#777",
+    marginTop: 4,
+  },
+  addButton: {
     backgroundColor: "#3498db",
     width: 40,
     height: 40,
-    display: "flex",
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 40,
-    fontSize: 24,
-    fontWeight: "bold",
-    marginRight: 20,
   },
-  item: {
-    fontSize: 16,
+  addButtonText: {
+    fontSize: 20,
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
