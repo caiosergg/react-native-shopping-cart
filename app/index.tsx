@@ -1,22 +1,15 @@
 import React from "react";
-import styled from "styled-components/native";
+
+import { Button, ButtonText, Container, Nome, Title } from "./styles";
 
 export default function App() {
   return (
     <Container>
-      <Title>Title</Title>
+      <Title cor="red">Title</Title>
+      <Nome>Name</Nome>
+      <Button onPress={() => alert("Tab")}>
+        <ButtonText>Enter</ButtonText>
+      </Button>
     </Container>
   );
 }
-
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: red;
-`;
-
-const Title = styled.Text`
-  color: #fff;
-  font-size: 25px;
-`;
