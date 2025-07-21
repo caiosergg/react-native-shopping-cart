@@ -65,6 +65,8 @@ const styles = StyleSheet.create({
   },
   cartButtonText: {
     color: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
     fontSize: 16,
     fontWeight: "bold",
   },
