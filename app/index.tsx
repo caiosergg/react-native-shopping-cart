@@ -1,4 +1,6 @@
 import { useRouter } from "expo-router";
+import React, { useState } from "react";
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,34 +9,32 @@ import {
   View,
 } from "react-native";
 
-import produtos from "../products.json";
-
+import { Feather } from "@expo/vector-icons";
 export default function Home() {
   const router = useRouter();
 
+  const [products, setProducts] = useState([
+    { id: 1, name: "Wireless Headphones", price: 199.99 },
+    { id: 2, name: "Mechanical Keyboard", price: 89.9 },
+    { id: 3, name: "4K Monitor", price: 349.5 },
+    { id: 4, name: "USB-C Hub", price: 29.99 },
+  ]);
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      <View style={styles.cartContent}>
         <Text style={styles.title}>Lista de Produtos</Text>
+
         <TouchableOpacity
           style={styles.cartButton}
-          onPress={() => router.push("/carrinho")}
+          onPress={() => router.push("/cart")}
         >
-          <Text style={styles.cartButtonText}>Carrinho</Text>
+          <View style={styles.dot}>
+            <Text style={styles.dotText}>3</Text>
+          </View>
+          <Feather name="shopping-cart" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
-
-      {produtos.map((item) => (
-        <View key={item.id} style={styles.productCard}>
-          <View>
-            <Text style={styles.productName}>{item.name}</Text>
-            <Text style={styles.productPrice}>R$ {item.price}</Text>
-          </View>
-          <TouchableOpacity style={styles.addButton}>
-            <Text style={styles.addButtonText}>+</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
     </SafeAreaView>
   );
 }
@@ -43,65 +43,47 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 16,
   },
-  header: {
+  cartContent: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 20,
+    marginTop: 12,
+    marginBottom: 12,
+    height: 60,
+    padding: 12,
+    backgroundColor: "#2e86c1",
+  },
+  cartButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#3498db",
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    borderColor: "#fafafa",
+    borderWidth: 1,
   },
   title: {
     fontSize: 24,
-    marginLeft: 8,
     fontWeight: "bold",
-    color: "#333",
-  },
-  cartButton: {
-    backgroundColor: "#3498db",
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 8,
-  },
-  cartButtonText: {
     color: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 16,
-    fontWeight: "bold",
   },
-  productCard: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 12,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 8,
-    backgroundColor: "#fafafa",
-  },
-  productName: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "#333",
-  },
-  productPrice: {
-    fontSize: 16,
-    color: "#777",
-    marginTop: 4,
-  },
-  addButton: {
-    backgroundColor: "#3498db",
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+  dot: {
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "red",
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    position: "absolute",
+    zIndex: 99,
+    bottom: -4,
+    left: -4,
   },
-  addButtonText: {
-    fontSize: 20,
+  dotText: {
     color: "#fff",
+    fontSize: 12,
     fontWeight: "bold",
   },
 });

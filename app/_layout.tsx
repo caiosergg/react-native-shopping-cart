@@ -4,13 +4,14 @@ export default function Layout() {
   return (
     <Stack
       screenOptions={{
-        headerStyle: { backgroundColor: "#3498db" },
+        headerStyle: { backgroundColor: "#2e86c1" },
         headerTintColor: "#fff",
         headerTitleStyle: { fontWeight: "bold" },
+        headerTitleAlign: "center",
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Lista de Produtos" }} />
-      <Stack.Screen name="carrinho" options={{ title: "Carrinho" }} />
+      <Stack.Screen name="index" options={{ title: "Name App" }} />
+      <Stack.Screen name="cart" options={{ title: "Cart" }} />
     </Stack>
   );
 }
